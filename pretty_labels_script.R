@@ -61,14 +61,44 @@ pretty_labels <- function(x) {
   if (max(x) < 1000) {
     output <- as.character(x)
   } else if (maxx < 1000000) {
+    if (log_diff > 3) {
+      .nsmall <- 0
+    } else {
+      .nsmall <- 3 - log_diff
+    }
+    
     output <- paste0(prettyNum(x / 1000, nsmall = 3 - log_diff), "K")
   } else if (maxx < 1000000000) {
-    output <- paste0(prettyNum(x / 1000000, nsmall = 6 - log_diff), "M")
+    if (log_diff > 6) {
+      .nsmall <- 0
+    } else {
+      .nsmall <- 6 - log_diff
+    }
+    
+    output <- paste0(prettyNum(x / 1000000, nsmall = .nsmall), "M")
   } else if (maxx < 1000000000000) {
+    if (log_diff > 9) {
+      .nsmall <- 0
+    } else {
+      .nsmall <- 9 - log_diff
+    }
+    
     output <- paste0(prettyNum(x / 1000000000, nsmall = 9 - log_diff), "B")
   } else if (maxx < 1000000000000000) {
+    if (log_diff > 12) {
+      .nsmall <- 0
+    } else {
+      .nsmall <- 12 - log_diff
+    }
+    
     output <- paste0(prettyNum(x / 1000000000000, nsmall = 12 - log_diff), "T")
   } else if (maxx < 1000000000000000000) {
+    if (log_diff > 15) {
+      .nsmall <- 0
+    } else {
+      .nsmall <- 15 - log_diff
+    }
+    
     output <- paste0(prettyNum(x / 1000000000000000, nsmall = 15 - log_diff), "Q")
   }
   
